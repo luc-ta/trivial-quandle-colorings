@@ -1,0 +1,71 @@
+local n, k, Q, i, j1, j2, trefoilColorings, grannyColorings, x1, x2, x3, a, b, c, d, e, f, isFaithful; 
+n:=8; # replace with however many elements you'd like in your coloring quandles
+k:=1581; # number of quandles of order n
+for i in [1..k] do
+	Q:=LRQ.Quandle(n,i);
+	
+	# check faithfulness
+	isFaithful := true;
+	for j1 in [1..n] do
+		for j2 in [j1+1..n] do
+			if Q[j1] = Q[j2] then isFaithful := false; break; fi;
+		od;
+		if isFaithful = false then break; fi;
+	od;
+	if isFaithful then continue; fi;
+	
+	Print("Checking Q = LRQ.Quandle(", n, ",", i,")...\n");
+	
+	# count Q-colorings of the trefoil
+	trefoilColorings:=0;
+	for x1 in [1..n] do
+	for x2 in [1..n] do
+	for x3 in [1..n] do
+		# relations of the fundamental quandle of the granny knot; from Ex. 5 of https://arxiv.org/abs/1901.10996
+		if x3^(Q[x1]) = x2 then
+		if x2^(Q[x3]) = x1 then
+		if x1^(Q[x2]) = x3 then
+			trefoilColorings := trefoilColorings + 1;
+		fi;
+		fi;
+		fi;
+	od;
+	od;
+	od;
+	# check if the trefoil has any nontrivial colorings
+	if not trefoilColorings = n then continue; fi; 
+	
+	# count Q-colorings of the granny knot
+	grannyColorings:=0;
+	for a in [1..n] do
+	for b in [1..n] do
+	for c in [1..n] do
+	for d in [1..n] do
+	for e in [1..n] do
+	for f in [1..n] do
+		# relations of the fundamental quandle of the granny knot; from p. 4 of https://arxiv.org/abs/math/0407050
+		if a^Q[c] = b then
+		if c^Q[b] = d then
+		if b^Q[d]=c then
+		if d^Q[f] = e then
+		if f^Q[e] = a then
+		if e^Q[a] = f then
+			grannyColorings := grannyColorings + 1;
+		fi;
+		fi;
+		fi;
+		fi;
+		fi;
+		fi;
+	od;
+	od;
+	od;
+	od;
+	od;
+	od;
+	# check if the granny knot has nontrivial colorings
+	if grannyColorings = n then continue; fi; 
+	
+	# success!
+	Print("For Q = LRQ.Quandle(", n, ",", i,"), the trefoil has only trivial colorings, while the granny knot has ",grannyColorings," colorings.\n");
+od;
