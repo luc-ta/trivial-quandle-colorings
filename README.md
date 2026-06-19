@@ -1,5 +1,5 @@
 # trivial-quandle-colorings
-GAP code for the MathOverflow answer [link forthcoming]
+GAP code for [this MathOverflow answer](https://mathoverflow.net/a/512177/592688)
 
 Based on the [online rack and quandle library](https://www.cs.du.edu/~petr/libraries_of_algebraic_structures.html) of Petr Vojtěchovský and Seung Yeop Yang.
 
