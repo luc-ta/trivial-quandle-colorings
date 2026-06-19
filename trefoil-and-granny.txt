@@ -46,7 +46,7 @@ for i in [1..k] do
 		# relations of the fundamental quandle of the granny knot; from p. 4 of https://arxiv.org/abs/math/0407050
 		if a^Q[c] = b then
 		if c^Q[b] = d then
-		if b^Q[d]=c then
+		if b^Q[d] = c then
 		if d^Q[f] = e then
 		if f^Q[e] = a then
 		if e^Q[a] = f then
