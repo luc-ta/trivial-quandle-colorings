@@ -21,7 +21,7 @@ for i in [1..k] do
 	for x1 in [1..n] do
 	for x2 in [1..n] do
 	for x3 in [1..n] do
-		# relations of the fundamental quandle of the granny knot; from Ex. 5 of https://arxiv.org/abs/1901.10996
+		# relations of the fundamental quandle of the trefoil; from Ex. 5 of https://arxiv.org/abs/1901.10996
 		if x3^(Q[x1]) = x2 then
 		if x2^(Q[x3]) = x1 then
 		if x1^(Q[x2]) = x3 then
